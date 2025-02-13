@@ -1,12 +1,9 @@
 /// Default intent flags for opening the custom tabs intent on Android.
-/// This is essentially the same as
-/// `FLAG_ACTIVITY_SINGLE_TOP | FLAG_ACTIVITY_NEW_TASK`.
-const defaultIntentFlags = 1 << 29 | 1 << 28;
+const defaultIntentFlags = 0;
 
 /// "Ephemeral" intent flags for opening the custom tabs intent on Android.
 /// This is essentially the same as
-/// `FLAG_ACTIVITY_SINGLE_TOP | FLAG_ACTIVITY_NEW_TASK
-/// | FLAG_ACTIVITY_NO_HISTORY`.
+/// FLAG_ACTIVITY_NO_HISTORY`.
 const ephemeralIntentFlags = defaultIntentFlags | 1 << 30;
 
 /// Default HTML code that generates a nice callback page.

@@ -1,5 +1,6 @@
 package com.linusu.flutter_web_auth_2
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -9,16 +10,20 @@ import androidx.browser.customtabs.CustomTabsClient
 import androidx.browser.customtabs.CustomTabsIntent
 
 import io.flutter.embedding.engine.plugins.FlutterPlugin
+import io.flutter.embedding.engine.plugins.activity.ActivityAware
+import io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding
 import io.flutter.plugin.common.BinaryMessenger
 import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler
 import io.flutter.plugin.common.MethodChannel.Result
+import java.util.ArrayList
 
 class FlutterWebAuth2Plugin(
     private var context: Context? = null,
-    private var channel: MethodChannel? = null
-) : MethodCallHandler, FlutterPlugin {
+    private var channel: MethodChannel? = null,
+    private var activity: Activity? = null,
+) : MethodCallHandler, FlutterPlugin, ActivityAware {
     companion object {
         val callbacks = mutableMapOf<String, Result>()
     }
@@ -46,17 +51,11 @@ class FlutterWebAuth2Plugin(
                 val options = call.argument<Map<String, Any>>("options")!!
 
                 callbacks[callbackUrlScheme] = resultCallback
-                val intent = CustomTabsIntent.Builder().build()
-                val keepAliveIntent = Intent(context, KeepAliveService::class.java)
-
-                intent.intent.addFlags(options["intentFlags"] as Int)
-                intent.intent.putExtra("android.support.customtabs.extra.KEEP_ALIVE", keepAliveIntent)
-
-                val targetPackage = findTargetBrowserPackageName(options)
-                if (targetPackage != null) {
-                    intent.intent.setPackage(targetPackage)
-                }
-                intent.launchUrl(context!!, url)
+                activity?.startActivity(Intent(activity,AuthenticationManagementActivity::class.java).apply {
+                    putExtra(AuthenticationManagementActivity.KEY_AUTH_URI,url)
+                    putExtra(AuthenticationManagementActivity.KEY_AUTH_OPTION_INTENT_FLAGS, options["intentFlags"] as Int)
+                    putExtra(AuthenticationManagementActivity.KEY_AUTH_OPTION_TARGET_PACKAGE, findTargetBrowserPackageName(options))
+                })
             }
 
             "cleanUpDanglingCalls" -> {
@@ -69,6 +68,22 @@ class FlutterWebAuth2Plugin(
 
             else -> resultCallback.notImplemented()
         }
+    }
+
+    override fun onAttachedToActivity(binding: ActivityPluginBinding) {
+        activity = binding.activity
+    }
+
+    override fun onDetachedFromActivityForConfigChanges() {
+        onDetachedFromActivity()
+    }
+
+    override fun onReattachedToActivityForConfigChanges(binding: ActivityPluginBinding) {
+        onAttachedToActivity(binding)
+    }
+
+    override fun onDetachedFromActivity() {
+        activity = null
     }
 
     /**
@@ -145,5 +160,4 @@ class FlutterWebAuth2Plugin(
         )
         return value == packageName
     }
-
 }

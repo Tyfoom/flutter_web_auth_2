@@ -47,6 +47,11 @@
 - 🐛 Fix recursion errors in Flutter `3.22.0`
 - 🌹 Update dependencies (`melos` and `flutter_lints`)
 
+## 3.1.2
+
+- 🐛 Fix recursion errors in Flutter `3.22.0`
+- 🌹 Update `melos` to `5.1.0` to have cleaner CI commands
+
 ## 4.0.0-alpha.3
 
 - 🐛 Fix `iframe` approach

@@ -1,3 +1,7 @@
+## 5.0.0-alpha.0
+
+- 💥 Update melos to `7.x` (requires SDK `>=3.5.0`)
+
 ## 4.1.0
 
 - No change

@@ -1,3 +1,8 @@
+## 5.0.0-alpha.0
+
+- 💥 Update melos to `7.x` (requires SDK `>=3.5.0`)
+- 💥 New Android authentication approach (Thanks to [@Mino5531](https://github.com/Mino5531) in [#156](https://github.com/ThexXTURBOXx/flutter_web_auth_2/pull/156))
+
 ## 4.1.0
 
 - 🌹 Add host and path comparator to webview implementation (related to [#146](https://github.com/ThexXTURBOXx/flutter_web_auth_2/issues/146))

@@ -24,7 +24,7 @@ Add the following snippet to your `pubspec.yaml` and follow the [Setup guide](#s
 
 ```yaml
 dependencies:
-  flutter_web_auth_2: ^4.0.0-alpha.0
+  flutter_web_auth_2: ^5.0.0-alpha.0
 ```
 
 To authenticate against your own custom site:
@@ -83,6 +83,12 @@ final accessToken = jsonDecode(response.body)['access_token'] as String;
 **Note:** To use multiple scopes with Google, you need to encode them as a single string, separated by spaces (`%20`). For example, `scope: 'email https://www.googleapis.com/auth/userinfo.profile'`. Here is [a list of all supported scopes](https://developers.google.com/identity/protocols/oauth2/scopes).
 
 ## Migration
+
+### Upgrading to `5.x`
+
+The following constraints have been added in `5.0.0`:
+- The existing Android approach has been replaced with a new (improved) one (no migration necessary; is automatically used)
+- Dart SDK `>=3.5.0` is now required (due to migration to melos `7.x`)
 
 ### Upgrading to `4.x`
 

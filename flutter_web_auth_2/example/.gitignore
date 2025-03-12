@@ -33,6 +33,7 @@ unlinked.ds
 unlinked_spec.ds
 
 # Android related
+**/android/app/.cxx/
 **/android/.gradle
 **/android/captures/
 **/android/local.properties

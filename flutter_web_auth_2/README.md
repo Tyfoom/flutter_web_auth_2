@@ -116,6 +116,12 @@ If you want to use the new approach (**default behaviour!**), you need to do a b
 - Make sure that your users know about the new requirements, as described
   [here](https://pub.dev/packages/desktop_webview_window)
 
+Last, but not least, version `4.0.0` also added *full* support for Universal links on iOS and macOS!
+In order to do this, two additional options have been added (which are *required* if
+`callbackUrlScheme` is `https`!):
+- `httpsHost` is the host of the callback URL
+- `httpsPath` is the path of the callback URL
+
 ### Upgrading to `3.x`
 
 Version `3.0.0` featured a huge refactor which made it possible to maintain even more configuration

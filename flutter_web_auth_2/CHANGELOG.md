@@ -1,3 +1,7 @@
+## 5.0.0-alpha.1
+
+- 🌹 Added migration guide for `5.x` and updated migration guide for `4.x`
+
 ## 5.0.0-alpha.0
 
 - 💥 Update melos to `7.x` (requires SDK `>=3.5.0`)

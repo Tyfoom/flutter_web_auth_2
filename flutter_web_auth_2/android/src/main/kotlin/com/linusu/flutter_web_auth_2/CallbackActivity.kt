@@ -1,10 +1,8 @@
 package com.linusu.flutter_web_auth_2
 
-import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
 import android.net.Uri
-import android.os.Build
 import android.os.Bundle
 
 class CallbackActivity : Activity() {

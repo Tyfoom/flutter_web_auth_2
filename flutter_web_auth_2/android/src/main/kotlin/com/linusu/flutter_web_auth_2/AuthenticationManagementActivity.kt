@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import androidx.browser.customtabs.CustomTabsIntent
 
@@ -78,7 +79,12 @@ class AuthenticationManagementActivity(
             return
         }
         authStarted = state.getBoolean(KEY_AUTH_STARTED, false)
-        authenticationUri = state.getParcelable(KEY_AUTH_URI)!!
+        authenticationUri = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            state.getParcelable(KEY_AUTH_URI, Uri::class.java)
+        } else {
+            @Suppress("deprecation")
+            state.getParcelable(KEY_AUTH_URI)
+        } ?: throw IllegalStateException("Authentication URI is null")
         intentFlags = state.getInt(KEY_AUTH_OPTION_INTENT_FLAGS, 0)
         targetPackage = state.getString(KEY_AUTH_OPTION_TARGET_PACKAGE)
     }

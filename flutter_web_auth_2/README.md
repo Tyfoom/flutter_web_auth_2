@@ -89,6 +89,7 @@ final accessToken = jsonDecode(response.body)['access_token'] as String;
 The following constraints have been added in `5.0.0`:
 - The existing Android approach has been replaced with a new (improved) one (no migration necessary; is automatically used)
 - Android now uses Auth Tab: `httpsHost` and `httpsPath` are now required on Android if you are using a `https` in `callbackUrlScheme`
+- On Android, issues with `taskAffinity`s have been fixed and it is strongly advised to set `android:taskAffinity=""` for all exported `Activity`s (this usually includes your `MainActivity` and `flutter_web_auth_2`'s `CallbackActivity`)
 - Dart SDK `>=3.5.0` is now required (due to migration to melos `7.x`)
 
 ### Upgrading to `4.x`
@@ -163,7 +164,8 @@ In order to capture the callback url, the following `activity` needs to be added
 
     <activity
       android:name="com.linusu.flutter_web_auth_2.CallbackActivity"
-      android:exported="true">
+      android:exported="true"
+      android:taskAffinity="">
       <intent-filter android:label="flutter_web_auth_2">
         <action android:name="android.intent.action.VIEW" />
         <category android:name="android.intent.category.DEFAULT" />
@@ -279,7 +281,8 @@ When you use this package for the first time, you may experience some problems. 
         <!-- add the com.linusu.flutter_web_auth_2.CallbackActivity activity -->
         <activity
           android:name="com.linusu.flutter_web_auth_2.CallbackActivity"
-          android:exported="true">
+          android:exported="true"
+          android:taskAffinity="">
           <intent-filter android:label="flutter_web_auth_2">
             <action android:name="android.intent.action.VIEW" />
             <category android:name="android.intent.category.DEFAULT" />
@@ -299,7 +302,8 @@ When you use this package for the first time, you may experience some problems. 
       <application>
         <activity
           android:name="com.linusu.flutter_web_auth_2.CallbackActivity"
-          android:exported="true">
+          android:exported="true"
+          android:taskAffinity="">
           <intent-filter android:label="flutter_web_auth_2">
             <action android:name="android.intent.action.VIEW" />
             <category android:name="android.intent.category.DEFAULT" />
@@ -318,12 +322,13 @@ When you use this package for the first time, you may experience some problems. 
     - <activity android:name="com.linusu.flutter_web_auth_2.CallbackActivity">
     + <activity
     +   android:name="com.linusu.flutter_web_auth_2.CallbackActivity"
-    +   android:exported="true">
+    +   android:exported="true"
+    +   android:taskAffinity="">
     ```
   
 - If you want to have a callback URL with `http` or `https` scheme, you also need to specify a host etc.
   See [c:geo](https://github.com/cgeo/cgeo/blob/d7ab67629ac4798adaae194e563afe7df134fcd0/main/AndroidManifest.xml#L164) as an example for this.
-- There is also a known problem with task affinities and launch modes (see [#113](https://github.com/ThexXTURBOXx/flutter_web_auth_2/issues/113)). In order to ensure that `flutter_web_auth_2` works correctly, set `android:launchMode="singleTop"` and remove any `android:taskAffinity` entries. This configuration is guaranteed to work.
+- In older versions of this package, there was a known problem with task affinities and launch modes (see [#113](https://github.com/ThexXTURBOXx/flutter_web_auth_2/issues/113)). In order to ensure that `flutter_web_auth_2` works correctly on these versions (prior to `5.0.0-alpha.2`), set `android:launchMode="singleTop"` and remove any `android:taskAffinity` entries. This configuration is guaranteed to work. In newer versions, this should not cause problems!
 
 ### Troubleshooting OAuth redirects
 

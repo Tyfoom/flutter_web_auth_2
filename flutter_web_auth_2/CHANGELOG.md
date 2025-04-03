@@ -1,3 +1,7 @@
+## 5.0.0-alpha.2
+
+- 💥 Even newer Android authentication approach (Thanks to [@titanous](https://github.com/titanous) in [#163](https://github.com/ThexXTURBOXx/flutter_web_auth_2/pull/163))
+
 ## 5.0.0-alpha.1
 
 - 🌹 Added migration guide for `5.x` and updated migration guide for `4.x`

@@ -1,6 +1,7 @@
 ## 5.0.0-alpha.2
 
 - 💥 Even newer Android authentication approach (Thanks to [@titanous](https://github.com/titanous) in [#163](https://github.com/ThexXTURBOXx/flutter_web_auth_2/pull/163))
+- 🌹 Add auto-close to old server method default landing page on Windows and Linux
 
 ## 5.0.0-alpha.1
 

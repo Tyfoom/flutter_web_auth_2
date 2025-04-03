@@ -32,10 +32,16 @@ const _defaultLandingPage = '''
       font-size: 2rem;
     }
   </style>
+  <script>
+    setTimeout(function() {
+        window.close()
+    }, 1);
+  </script>
 </head>
 <body>
   <main>
-    <div id="text">You may now close this page</div>
+    <div id="text">This page should automatically close.
+    You may also close this page manually now.</div>
   </main>
 </body>
 </html>
@@ -114,7 +120,7 @@ class FlutterWebAuth2Options {
   /// authentication process.
   final int timeout;
 
-  /// **Only has an effect on Linux and Windows!**
+  /// **Only has an effect on Linux and Windows with [useWebview] = `false`!**
   /// Can be used to customise the landing page which tells the user that the
   /// authentication was successful. It is the literal HTML source code which
   /// will be displayed using a `HttpServer`.

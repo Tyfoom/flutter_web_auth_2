@@ -1,3 +1,7 @@
+## 5.0.0-alpha.3
+
+- 💥 Migrate to Swift Package Manager - see [here](https://docs.flutter.dev/packages-and-plugins/swift-package-manager/for-app-developers) for more info (Thanks to [@lishaduck](https://github.com/lishaduck) in [#165](https://github.com/ThexXTURBOXx/flutter_web_auth_2/pull/165))
+
 ## 5.0.0-alpha.2
 
 - 💥 Even newer Android authentication approach (Thanks to [@titanous](https://github.com/titanous) in [#163](https://github.com/ThexXTURBOXx/flutter_web_auth_2/pull/163))

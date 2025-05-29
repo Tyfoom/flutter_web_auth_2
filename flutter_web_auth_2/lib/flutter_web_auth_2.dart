@@ -72,7 +72,7 @@ class FlutterWebAuth2 {
       'Do not use debugOrigin in production',
     );
 
-    _assertCallbackScheme(callbackUrlScheme);
+    //_assertCallbackScheme(callbackUrlScheme);
 
     WidgetsBinding.instance.removeObserver(
       _resumedObserver,
